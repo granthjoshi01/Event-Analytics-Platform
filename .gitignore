@@ -4,30 +4,36 @@
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-*.egg-info/
-.env
-.venv
+.venv/
 venv/
+.env
 
 # ----------------------
-# Secrets & credentials
+# Databases
 # ----------------------
-service_account.json
-*.key
-*.pem
+*.db
+*.sqlite
+postgres-data/
+pgdata/
 
 # ----------------------
-# Data & outputs
+# Event data (raw / generated)
 # ----------------------
+data/raw/
+data/processed/
 *.csv
-*.log
-status.json
+*.parquet
+*.jsonl
 
 # ----------------------
 # Jupyter
 # ----------------------
 .ipynb_checkpoints/
+
+# ----------------------
+# Logs
+# ----------------------
+*.log
 
 # ----------------------
 # OS / Editor
