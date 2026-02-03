@@ -1,0 +1,36 @@
+# ----------------------
+# Python
+# ----------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.env
+.venv
+venv/
+
+# ----------------------
+# Secrets & credentials
+# ----------------------
+service_account.json
+*.key
+*.pem
+
+# ----------------------
+# Data & outputs
+# ----------------------
+*.csv
+*.log
+status.json
+
+# ----------------------
+# Jupyter
+# ----------------------
+.ipynb_checkpoints/
+
+# ----------------------
+# OS / Editor
+# ----------------------
+.DS_Store
+.vscode/
