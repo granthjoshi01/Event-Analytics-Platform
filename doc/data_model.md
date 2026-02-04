@@ -97,13 +97,3 @@ These transformations are intentionally deferred until sufficient data patterns 
 
 ---
 
-## Summary
-
-This data model establishes a strong foundation for analytics by:
-
-- Clearly defining data grain
-- Preserving raw historical events
-- Enabling accurate and flexible SQL analysis
-- Supporting future scalability and modeling
-
-The goal is to prioritize **correctness and clarity** before optimization or scale.
