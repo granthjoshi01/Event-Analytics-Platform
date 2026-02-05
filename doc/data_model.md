@@ -1,99 +1,173 @@
-# Data Model – Event Analytics Project
+# Event Data Model
 
 ## Overview
 
-This project models **user interaction data** in the form of events.
-An *event* represents a single action performed by a user at a specific point in time
-(e.g., page view, button click, signup).
+This document defines the **core event data model** used by the Event Analytics Pipeline.
 
-The data model is designed with the following principles:
+The purpose of this model is to establish a **correct, stable, and extensible foundation** for analytics in a SaaS environment. All downstream analytics—including metrics, funnels, retention, and churn—are derived exclusively from this event data.
 
-- Preserve raw data as the source of truth
-- Define a clear grain of data
-- Enable future analytical modeling (funnels, retention, cohorts)
-- Support scalability and extensibility
+This document focuses on **conceptual data modeling**, not physical database implementation.
 
 ---
 
-## Core Concept: Event
+## What Is an Event?
 
-An **event** is defined as:
+An **event** is an immutable, append-only record representing a **single atomic action** that occurred in a client application at a specific point in time.
 
-> One action performed by one user at one specific time.
+An event answers the following questions:
+- **What happened?**
+- **Who performed the action?**
+- **When did it occur?**
+- **In what context did it happen?**
 
-Examples of events:
-- A user viewing a page
-- A user clicking a button
-- A user signing up
-- A user completing a purchase
-
-Each event is stored as **one row** in the database.
+Events describe **actions**, not states.
 
 ---
 
-## Grain of the Data
+## Design Principles
 
-The grain of this dataset is:
+The event model adheres to the following principles:
 
-> **One row per user event per timestamp**
+1. **Immutability**  
+   Once written, events are never updated or deleted.
 
-This means:
-- No aggregation at ingestion time
-- Each user action is captured independently
-- Historical accuracy is preserved
+2. **Append-only**  
+   New information is captured by inserting new events, never by modifying historical data.
 
-Defining the grain upfront ensures consistent analysis later and prevents ambiguity in metrics.
+3. **Atomicity**  
+   One event represents one indivisible action.
 
----
+4. **Raw Data Preservation**  
+   Events store facts, not interpretations or derived metrics.
 
-## Raw Events Table
+5. **SQL-driven Intelligence**  
+   All analytical meaning is derived downstream using SQL, not embedded in raw data.
 
-The first table in the system is the **raw events table**, which stores data exactly as it is generated.
-
-### Purpose of `raw_events`
-
-- Acts as the immutable source of truth
-- Stores untransformed, append-only data
-- Enables reprocessing and re-modeling without data loss
-- Separates ingestion from analytics logic
-
-No business logic or aggregation is applied at this stage.
+6. **Recomputability**  
+   Any metric must be recomputable from raw events alone.
 
 ---
 
-## Table: `raw_events`
+## Event Granularity
 
-| Column Name  | Description |
-|--------------|-------------|
-| `event_id`   | Unique identifier for each event |
-| `event_time` | Timestamp when the event occurred |
-| `user_id`    | Identifier of the user who triggered the event |
-| `session_id` | Identifier grouping related user actions |
-| `event_type` | Type of event (e.g., page_view, click, signup) |
-| `page`       | Page or screen where the event occurred |
-| `device`     | Device type (mobile, desktop, tablet) |
-| `country`    | Country associated with the user |
+Each event represents a **single occurrence** of an action.
+
+Examples:
+- A user clicking a button → 1 event
+- A user logging in twice → 2 events
+- Creating three projects → 3 events
+
+Batching multiple actions into a single event is not allowed.
 
 ---
 
-## Design Decisions
+## Canonical Event Contract
 
-- **Raw-first approach**: Raw data is stored before any transformation to preserve accuracy.
-- **Append-only strategy**: Events are never updated or deleted.
-- **Minimal assumptions**: Only essential fields are included initially.
-- **Future-ready**: The model allows easy extension into fact and dimension tables.
+Every event in the system must conform to the following **conceptual contract**.
+
+### Mandatory Fields
+
+| Field Name   | Description |
+|-------------|-------------|
+| `event_id`  | Globally unique identifier for the event |
+| `event_name`| Stable, verb-based name describing the action |
+| `event_time`| Timestamp when the action occurred |
+| `user_id`   | Identifier of the user who performed the action |
+| `properties`| Key-value metadata providing contextual details |
+
+These fields are required for an event to be considered valid.
+
+---
+
+## Event Naming Conventions
+
+Event names must follow consistent and predictable conventions to ensure long-term analytical stability.
+
+### Rules
+- Use **snake_case**
+- Use **past-tense verbs**
+- Describe **actions**, not states
+- Avoid embedding business logic in event names
+
+### Valid Examples
+- `user_signed_up`
+- `login_succeeded`
+- `project_created`
+- `feature_used`
+
+### Invalid Examples
+- `is_active_user`
+- `user_status`
+- `daily_login_count`
+- `churned_user`
 
 ---
 
-## Future Modeling (Out of Scope for Phase 1)
+## Event Properties
 
-In later phases, this raw table will be transformed into:
+Event properties provide **additional context** about an event.
 
-- Fact tables (e.g., `fact_events`)
-- Dimension tables (e.g., users, time, device)
-- Analytical views for metrics and reporting
+### Characteristics
+- Descriptive, not analytical
+- Optional and extensible
+- Schema-flexible
+- May evolve over time
 
-These transformations are intentionally deferred until sufficient data patterns are observed.
+### Valid Properties
+- `plan_type`
+- `project_id`
+- `feature_name`
+- `source`
+
+### Invalid Properties
+- `is_power_user`
+- `retention_bucket`
+- `churn_risk_score`
+- `daily_event_count`
+
+Properties must never encode derived insights, classifications, or metrics.
 
 ---
+
+## What This Model Intentionally Excludes
+
+The raw event model does **not** include:
+
+- Aggregated metrics (DAU, MAU, funnels)
+- User state flags (e.g., active, churned)
+- Counters or cumulative values
+- Machine learning features or predictions
+- Dashboards or visualization logic
+
+All such constructs are derived downstream from raw events.
+
+---
+
+## Relationship to Downstream Analytics
+
+This event model acts as the **single source of truth** for all analytics.
+
+Downstream layers may:
+- Aggregate events
+- Join events with dimensional tables
+- Compute metrics and trends
+- Define retention and churn logic
+
+Raw events themselves remain unchanged.
+
+---
+
+## Out of Scope (Future Considerations)
+
+The following topics are intentionally deferred:
+- Multi-tenant support
+- Schema versioning
+- Streaming ingestion
+- Late-arriving event handling
+- Warehouse-level optimization
+
+These will be addressed after the core model is validated.
+
+---
+
 
