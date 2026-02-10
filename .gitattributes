@@ -1,0 +1,2 @@
+# Treat SQL as a primary language for this project
+*.sql linguist-detectable=true
