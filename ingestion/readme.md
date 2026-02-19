@@ -38,7 +38,7 @@ It does not interpret or aggregate data.
        ├── test_ingest.py
        └── readme.md
 
-### ingest_event.py
+###  [main ingestion](ingest_event.py)
 
 Core ingestion function.
 
@@ -54,7 +54,7 @@ This file contains the system’s write path.
 
 ---
 
-### validation.py
+### [validation code](validation.py)
 
 Event schema enforcement module.
 
@@ -71,7 +71,7 @@ This ensures the storage layer never receives invalid data.
 
 ---
 
-### test_ingest.py
+### [ingestion test file](test_ingest.py)
 
 Local event simulation script.
 
@@ -91,7 +91,7 @@ It allows end-to-end testing of the ingestion flow.
 
 ---
 
-### __init__.py
+### [init file](__init__.py)
 
 Marks the directory as a Python package.
 
