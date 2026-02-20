@@ -22,12 +22,19 @@ All logic is expressed declaratively in SQL.
 
 
 Ingestion Layer
+
 ↓
+
 events table (PostgreSQL)
+
 ↓
+
 SQL Analytics (this directory)
+
 ↓
+
 Insights & Interpretation
+
 
 This layer transforms raw event facts into business-level insights.
 
@@ -36,21 +43,21 @@ This layer transforms raw event facts into business-level insights.
 ## File Structure
 
 
-├── churn_classification.sql
-├── dau.sql
-├── retention_basic.sql
-├── retention_cohorts.sql
-├── retention_day1.sql
-├── signup_counts.sql
-├── funnels/
-│   └── …
-└── README.md
+    ├── churn_classification.sql
+    ├── dau.sql
+    ├── retention_basic.sql
+    ├── retention_cohorts.sql
+    ├── retention_day1.sql
+    ├── signup_counts.sql
+    ├── funnels/
+    │   └── …
+    └── README.md
 
 ---
 
 ## Engagement Metrics
 
-### `dau.sql`
+###  [dau.sql](dau.sql)
 
 Daily Active Users.
 
@@ -63,7 +70,7 @@ Purpose:
 
 ---
 
-### `signup_counts.sql`
+### [signup_counts.sql](signup_counts.sql)
 
 Daily signup events.
 
@@ -78,7 +85,7 @@ Purpose:
 
 ## Retention Metrics
 
-### `retention_basic.sql`
+### [retention_basic.sql](retention_basic.sql)
 
 **Definition:**  
 Users who perform any event after signup.
@@ -89,7 +96,7 @@ Purpose:
 
 ---
 
-### `retention_day1.sql`
+### [retention_day1.sql](retention_day1.sql)
 
 **Definition:**  
 Users active exactly one calendar day after signup.
@@ -100,7 +107,7 @@ Purpose:
 
 ---
 
-### `retention_cohorts.sql`
+### [retention_cohorts.sql](retention_cohorts.sql)
 
 **Definition:**  
 Retention measured relative to each user's signup date.
@@ -113,7 +120,7 @@ Purpose:
 
 ## Churn Modeling
 
-### `churn_classification.sql`
+### [churn_classification.sql](churn_classification.sql)
 
 Users are classified based on inactivity duration:
 
