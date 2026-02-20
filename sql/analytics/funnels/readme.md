@@ -9,7 +9,7 @@ Funnels help measure how users move through key product stages — from signup t
 
 ## Files Overview
 
-### 1. `signup_to_day1.sql`
+### 1. [signup to day 1](signup_to_day1.sql)
 
 **Purpose:**  
 Measures Day 1 retention — how many users return the day after signup.
@@ -24,7 +24,7 @@ Helps evaluate early user engagement and product stickiness.
 
 ---
 
-### 2. `signup_to_activity.sql`
+### 2.  [signup to activity](signup_to_activity.sql)
 
 **Purpose:**  
 Tracks how many users perform a meaningful activity after signing up.
