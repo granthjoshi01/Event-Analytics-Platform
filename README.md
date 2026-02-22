@@ -10,10 +10,10 @@ This project focuses on **correct event modeling, SQL-first analytics, and analy
 
 - [Overview](#overview)
 - [Architecture](#architecture)
-- [Core Data Model](sql/schema)
-- [Ingestion Layer](ingestion)
-- [Analytics Layer](sql/analytics)
-- [Churn Classification](sql/analytics/churn_classification.sql)
+- [Core Data Model](#core-data-model)
+- [Ingestion Layer](#ingestion-layer)
+- [Analytics Layer](#analytics-layer)
+- [Churn Classification](#churn-classification)
 - [Demo](#demo)
 - [How to Run](#how-to-run)
 - [Design Decisions & Tradeoffs](#design-decisions--tradeoffs)
@@ -87,7 +87,7 @@ Key columns:
 ![Events Table Schema](asset/schema.png)
 
 See full schema documentation in:  
-`sql/schema/`
+[Schema](sql/schema)
 
 ---
 
@@ -109,7 +109,7 @@ Key characteristics:
 - Strict input validation
 - Safe retry handling
 
-See: `ingestion/`
+See: [Ingestion Layer](ingestion)
 
 ---
 
@@ -137,11 +137,13 @@ Metrics implemented:
 
 All metrics are derived exclusively from raw events.
 
-See: `sql/analytics/`
+See: [Analytics Layer](sql/analytics)
 
 ---
 
 ## Churn Classification
+
+[Churn Classification](sql/analytics/churn_classification.sql)
 
 Users are categorized based on inactivity duration:
 
