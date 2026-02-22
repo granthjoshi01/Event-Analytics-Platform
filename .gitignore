@@ -1,42 +1,64 @@
-# ----------------------
+
 # Python
-# ----------------------
+
+
 __pycache__/
-*.pyc
-*.pyo
-.venv/
+*.py[cod]
+*$py.class
+
+# Virtual environments
 venv/
+.env/
+.venv/
+
+
+# Environment variables
+
+
 .env
+*.env
 
-# ----------------------
-# Databases
-# ----------------------
-*.db
-*.sqlite
-postgres-data/
-pgdata/
 
-# ----------------------
-# Event data (raw / generated)
-# ----------------------
-data/raw/
-data/processed/
-*.csv
-*.parquet
-*.jsonl
+# macOS
 
-# ----------------------
-# Jupyter
-# ----------------------
-.ipynb_checkpoints/
+.DS_Store
 
-# ----------------------
+
 # Logs
-# ----------------------
+
+
 *.log
 
-# ----------------------
-# OS / Editor
-# ----------------------
-.DS_Store
+
+# IDE / Editors
+
+
 .vscode/
+.idea/
+
+
+# Testing / Coverage
+
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+
+# Build / Distribution
+
+
+dist/
+build/
+*.egg-info/
+
+
+
+.ipynb_checkpoints/
+
+
+# Temporary files
+
+
+*.swp
+*.tmp
