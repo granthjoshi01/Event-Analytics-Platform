@@ -26,29 +26,36 @@ Contributions must align with these principles.
 
 ### 1. Clone the Repository
 
-```bash
-git clone <repo-url>
-cd Event-Analytics-Project
+bash
+
+    git clone <repo-url>
+    cd Event-Analytics-Project
 
 2. Install Dependencies
-pip install -r requirements.txt
-3. Configure Environment
-cp env.example .env
-Update .env with your local PostgreSQL credentials.
 
-4. Create Database
-createdb event_analytics
-5. Apply Schema
-psql event_analytics -f sql/schema/events.sql
+       pip install -r requirements.txt
+4. Configure Environment
+
+       cp env.example .env
+       Update .env with your local PostgreSQL credentials.
+
+5. Create Database
+
+       createdb event_analytics
+6. Apply Schema
+ 
+       psql event_analytics -f sql/schema/events.sql
 
 Running the System
 
 Ingest a Test Event
-python -m ingestion.test_ingest
+
+       python -m ingestion.test_ingest
 
 Execute Analytics
-psql event_analytics
-\i sql/analytics/churn_classification.sql
+
+     psql event_analytics
+     \i sql/analytics/churn_classification.sql
 
 
 ⸻
