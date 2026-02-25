@@ -137,6 +137,8 @@ Metrics implemented:
 
 All metrics are derived exclusively from raw events.
 
+![retention cohort](asset/retention_cohort.gif)
+
 See: [Analytics Layer](sql/analytics)
 
 ---
@@ -168,6 +170,7 @@ churned      | 1
 
 hard_churn   | 1
 
+![churn demo](asset/churn.gif)
 ---
 
 ---
