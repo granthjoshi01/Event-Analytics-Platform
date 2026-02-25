@@ -14,7 +14,6 @@ This project focuses on **correct event modeling, SQL-first analytics, and analy
 - [Ingestion Layer](#ingestion-layer)
 - [Analytics Layer](#analytics-layer)
 - [Churn Classification](#churn-classification)
-- [Demo](#demo)
 - [How to Run](#how-to-run)
 - [Design Decisions & Tradeoffs](#design-decisions--tradeoffs)
 - [Scope Boundaries](#scope-boundaries)
@@ -84,7 +83,7 @@ Key columns:
 - `ingested_at`
 
 
-![Events Table Schema](asset/schema.png)
+![Events Table Schema](asset/tables.png)
 
 See full schema documentation in:  
 [Schema](sql/schema)
@@ -137,6 +136,8 @@ Metrics implemented:
 
 All metrics are derived exclusively from raw events.
 
+![retention cohort](asset/retention_cohort.gif)
+
 See: [Analytics Layer](sql/analytics)
 
 ---
@@ -168,6 +169,7 @@ churned      | 1
 
 hard_churn   | 1
 
+![churn demo](asset/churn.gif)
 ---
 
 ---
