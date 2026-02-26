@@ -60,79 +60,117 @@ Execute Analytics
 
 ⸻
 
-Contribution Guidelines
+## Contribution Guidelines
 
-Python (Ingestion Layer)
-	•	Keep ingestion logic minimal
-	•	Validate input strictly
-	•	Do not introduce business logic into ingestion
-	•	Preserve idempotency (event_id as primary key)
+**Python (Ingestion Layer)**
 
-SQL (Analytics Layer)
-	•	Use CTEs for clarity
-	•	Keep queries readable and declarative
-	•	Avoid hard-coded assumptions
-	•	Ensure metrics are recomputable from raw events
+•	Keep ingestion logic minimal
 
-Documentation
-	•	Update README files when adding new features
-	•	Clearly define any new metric in plain language
-	•	Explain design decisions and tradeoffs
+•	Validate input strictly
+
+•	Do not introduce business logic into ingestion
+
+•	Preserve idempotency (event_id as primary key)
+
+**SQL (Analytics Layer)**
+
+•	Use CTEs for clarity
+
+•	Keep queries readable and declarative
+
+•	Avoid hard-coded assumptions
+
+•	Ensure metrics are recomputable from raw events
+
+**Documentation**
+
+•	Update README files when adding new features
+
+•	Clearly define any new metric in plain language
+
+•	Explain design decisions and tradeoffs
 
 ⸻
 
-What Should Not Be Added
+## What Should Not Be Added
 
 This repository intentionally excludes:
-	•	Dashboard frameworks
-	•	Web APIs
-	•	Scheduling systems
-	•	Cloud infrastructure
-	•	Machine learning models
-	•	Derived state tables
+
+•	Dashboard frameworks
+
+•	Web APIs
+
+•	Scheduling systems
+
+•	Cloud infrastructure
+
+•	Machine learning models
+
+•	Derived state tables
 
 If proposing major architectural changes, open an issue first.
 
 ⸻
 
-Pull Request Process
-	1.	Fork the repository
-	2.	Create a feature branch
-	3.	Commit focused, descriptive changes
-	4.	Open a pull request explaining:
-	•	What was changed
-	•	Why it was changed
-	•	How it aligns with project philosophy
+## Pull Request Process
+
+1.	Fork the repository
+
+2.	Create a feature branch
+
+3.	Commit focused, descriptive changes
+
+4.	Open a pull request explaining:
+
+•	What was changed
+
+•	Why it was changed
+
+•	How it aligns with project philosophy
 
 ⸻
 
-Reporting Issues
+## Reporting Issues
 
 When reporting a bug, include:
-	•	PostgreSQL version
-	•	Python version
-	•	Steps to reproduce
-	•	Expected vs actual behavior
-	•	Relevant logs or error messages
+
+•	PostgreSQL version
+
+•	Python version
+
+•	Steps to reproduce
+
+•	Expected vs actual behavior
+
+•	Relevant logs or error messages
 
 ⸻
 
-Code Style
-	•	Clear naming conventions
-	•	Small, focused functions
-	•	Readable SQL formatting
-	•	No unnecessary abstraction
-	•	No premature optimization
+## Code Style
+
+
+•	Clear naming conventions
+
+•	Small, focused functions
+
+•	Readable SQL formatting
+
+•	No unnecessary abstraction
+
+•	No premature optimization
 
 Clarity over cleverness.
 
 ⸻
 
-Scope Boundary Reminder
+## Scope Boundary Reminder
 
 This project demonstrates:
-	•	Event modeling
-	•	Append-only storage
-	•	SQL analytics (engagement, retention, churn)
+
+•	Event modeling
+
+•	Append-only storage
+
+•	SQL analytics (engagement, retention, churn)
 
 Scaling, orchestration, and deployment concerns belong in separate projects.
